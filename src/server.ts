@@ -8,3 +8,12 @@
 // Creational
 // Structural
 // Behavioral design patterns
+
+// import moment from 'moment';   //  const moment = require('moment')
+
+import dotenv from 'dotenv';
+dotenv.config();
+
+// console.log("PORT:", process.env.PORT);
+
+// console.log("mongo_url:", process.env.MONGO_URL);
