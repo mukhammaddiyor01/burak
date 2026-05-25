@@ -19,12 +19,17 @@ dotenv.config();
 // console.log("mongo_url:", process.env.MONGO_URL);
 
 // CLUSTER => Database => Collection => Document
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+import app from "./app";
 
 mongoose
+    .set("strictQuery", false)
     .connect(process.env.MONGO_URL as string, {})
     .then((data) => {
         console.log("MongoDB connection succeed");
         const PORT = process.env.PORT ?? 3003;
+        app.listen(PORT, function (){
+            console.log(`The server is running successfully on port: ${PORT}`);
+        });
     })
     .catch((err) => console.log("Error on Connection MongoDB", err));
