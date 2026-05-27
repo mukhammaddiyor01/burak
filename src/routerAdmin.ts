@@ -1,0 +1,12 @@
+import express, {Request, Response} from "express";
+const routerAdmin = express.Router();
+import restaurantController from "./controllers/restaurant.controller";
+// default chaqirilganda yaxlit chaqiriladi
+
+routerAdmin.get('/', restaurantController.goHome);
+
+routerAdmin.get("/login", restaurantController.getLogin);
+
+routerAdmin.get("/signup", restaurantController.getSignup);
+
+export default routerAdmin;

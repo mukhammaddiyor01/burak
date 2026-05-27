@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import router from "./router"
+import routerAdmin from "./routerAdmin"
 
 /** 1-ENTRANCE **/
 const app = express();
@@ -18,7 +19,9 @@ app.set("view engine", "ejs");
 
 
 /** 4-Routers **/
-app.use("/", router);    // Middleware Design Pattern // Bu requestni router.ts ga jo'natadi
 
+app.use("/admin", routerAdmin); //BSSR: Backend server site rendering : EJS
+app.use("/", router);    // Middleware Design Pattern // Bu requestni router.ts ga jo'natadi
+                         // SPA: React
 
 export default app;
