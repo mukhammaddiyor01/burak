@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import router from "./router"
 
 /** 1-ENTRANCE **/
 const app = express();
@@ -17,7 +18,7 @@ app.set("view engine", "ejs");
 
 
 /** 4-Routers **/
-
+app.use("/", router);    // Middleware Design Pattern // Bu requestni router.ts ga jo'natadi
 
 
 export default app;
