@@ -1,5 +1,5 @@
 import mongoose, {Schema} from 'mongoose';
-import { MemberType } from '../libs/types/enums/member.enum';
+import { MemberType, MemberStatus } from '../libs/types/enums/member.enum';
 // Schema first/ Code first
 
 // Schema first
@@ -42,11 +42,6 @@ const memberSchema = new Schema({
         type: String,
     },
 
-
-    memberDesc: {
-
-    },
-
     memberImage: {
         type: String,
     },
@@ -56,7 +51,7 @@ const memberSchema = new Schema({
         default: 0,
     },
 
-}
+},
     {timestamps: true}    // updatedAt, createdAt
 );
 
