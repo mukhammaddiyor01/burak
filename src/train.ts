@@ -10,3 +10,10 @@
 
 
 */
+
+/* 
+    Traditional API
+    Rest Api
+    GraphQL Api
+    ...
+*/
