@@ -3,7 +3,7 @@
     - Naming standarts:
         function. method. variable => Camel case      goHome  
         class => PASCAL                               MemberService
-        folder => KEBAB                               
+        folder, file => KEBAB                               
         css => Snake                                  button_style
     - ERROR handling:
         
