@@ -16,7 +16,7 @@ class MemberService {
         .findOne({memberType: MemberType.RESTAURANT})
         .exec();
         console.log("exist:", exist);
-        
+         
     if(exist)  throw new Errors(Httpcode.BAD_REQUEST, Message.CREATE_FAILED);
 
     try {

@@ -1,17 +1,33 @@
+# TASK O
+# Array ichidagi har xil qiymatlardan faqat sonlar yig'indisini hisoblab qaytarsin.
+# Masalan: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
 
-# TASK N
+def calculateSumOfNumbers(arr):
+    total = 0
+    for element in arr:
+        if type(element) == bool:
+            continue
+        elif type(element) in (int, float):
+            total += element
+    return total
 
-# Stringni palindrom ekanligini aniqlab true yoki false qaytarsin.
-# Masalan: palindromCheck("dad") return true
 
-def palindromCheck(s):
-    teskari = s[::-1]
-    return s == teskari
+print(calculateSumOfNumbers([10, "10", {"son": 10}, True, 35]))
 
 
-print(palindromCheck("dad"))
-print(palindromCheck("hello"))
-print(palindromCheck("racecar"))
+# # TASK N
+
+# # Stringni palindrom ekanligini aniqlab true yoki false qaytarsin.
+# # Masalan: palindromCheck("dad") return true
+
+# def palindromCheck(s):
+#     teskari = s[::-1]
+#     return s == teskari
+
+
+# print(palindromCheck("dad"))
+# print(palindromCheck("hello"))
+# print(palindromCheck("racecar"))
 
 
 # # TASK M
