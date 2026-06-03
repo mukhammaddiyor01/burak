@@ -1,18 +1,33 @@
-# TASK O
-# Array ichidagi har xil qiymatlardan faqat sonlar yig'indisini hisoblab qaytarsin.
-# Masalan: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
+# TASK P
+# Objectni nested array sifatida convert qilib qaytarsin.
+# Masalan: objectToArray({a: 10, b: 20}) return [["a", 10], ["b", 20]]
 
-def calculateSumOfNumbers(arr):
-    total = 0
-    for element in arr:
-        if type(element) == bool:
-            continue
-        elif type(element) in (int, float):
-            total += element
-    return total
+def objectToArray(obj):
+    result = []
+
+    for key in obj:
+        result.append([key, obj[key]])
+
+    return result
 
 
-print(calculateSumOfNumbers([10, "10", {"son": 10}, True, 35]))
+print(objectToArray({"a": 10, "b": 20}))
+
+# # TASK O
+# # Array ichidagi har xil qiymatlardan faqat sonlar yig'indisini hisoblab qaytarsin.
+# # Masalan: calculateSumOfNumbers([10, "10", {son: 10}, true, 35]) return 45
+
+# def calculateSumOfNumbers(arr):
+#     total = 0
+#     for element in arr:
+#         if type(element) == bool:
+#             continue
+#         elif type(element) in (int, float):
+#             total += element
+#     return total
+
+
+# print(calculateSumOfNumbers([10, "10", {"son": 10}, True, 35]))
 
 
 # # TASK N
