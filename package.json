@@ -13,7 +13,6 @@
   "author": "Adam",
   "license": "ISC",
   "dependencies": {
-    "@types/morgan": "^1.9.10",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.3",
@@ -23,6 +22,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@types/morgan": "^1.9.10",
     "@types/express": "^4.17.3",
     "nodemon": "^3.0.2",
     "ts-node": "^10.9.1",
