@@ -1,17 +1,26 @@
-# TASK P
-# Objectni nested array sifatida convert qilib qaytarsin.
-# Masalan: objectToArray({a: 10, b: 20}) return [["a", 10], ["b", 20]]
+# TASK Q
+# Objectda berilgan string propertysi borligini tekshirsin.
+# Masalan: hasProperty({name: "BMW"}, "name") return true
 
-def objectToArray(obj):
-    result = []
-
-    for key in obj:
-        result.append([key, obj[key]])
-
-    return result
+def has_property(obj, prop):
+    return prop in obj
 
 
-print(objectToArray({"a": 10, "b": 20}))
+print(has_property({"name": "BMW"}, "name"))
+
+# # TASK P
+# # Objectni nested array sifatida convert qilib qaytarsin.
+# # Masalan: objectToArray({a: 10, b: 20}) return [["a", 10], ["b", 20]]
+
+# def objectToArray(obj):
+#     result = []
+
+#     for key in obj:
+#         result.append([key, obj[key]])
+
+#     return result
+
+# print(objectToArray({"a": 10, "b": 20}))
 
 # # TASK O
 # # Array ichidagi har xil qiymatlardan faqat sonlar yig'indisini hisoblab qaytarsin.
@@ -26,9 +35,7 @@ print(objectToArray({"a": 10, "b": 20}))
 #             total += element
 #     return total
 
-
 # print(calculateSumOfNumbers([10, "10", {"son": 10}, True, 35]))
-
 
 # # TASK N
 
@@ -39,11 +46,9 @@ print(objectToArray({"a": 10, "b": 20}))
 #     teskari = s[::-1]
 #     return s == teskari
 
-
 # print(palindromCheck("dad"))
 # print(palindromCheck("hello"))
 # print(palindromCheck("racecar"))
-
 
 # # TASK M
 # # Array ichidagi har bir raqam uchun raqamning o'zi va uning kvadratidan tashkil topgan object hosil qilib qaytarsin.
@@ -56,9 +61,7 @@ print(objectToArray({"a": 10, "b": 20}))
 #         result.append(obj)
 #     return result
 
-
 # print(getSquareNumbers([1, 2, 3]))
-
 
 # # TASK L
 # # So'zlarni ketma-ketligini buzmasdan har bir so'zni alohida teskarisiga o'girib beradigan function tuzing.
@@ -68,6 +71,5 @@ print(objectToArray({"a": 10, "b": 20}))
 #     words = s.split()
 #     reversed_words = [word[::-1] for word in words]
 #     return " ".join(reversed_words)
-
 
 # print(reverseSentence("we like coding!"))
