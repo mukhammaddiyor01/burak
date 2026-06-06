@@ -21,7 +21,7 @@ class MemberService {
         try {
             const result = await this.memberModel.create(input);
             result.memberPassword = "";
-            return result.toJSON();
+            return result.toJSON() as unknown as Member;
         } catch (err) {
             console.error("ERROR, model signup", err)
             throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
@@ -41,6 +41,9 @@ class MemberService {
         if (!member) {
             throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
         }
+        if (!member.memberPassword) {
+            throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
+        }
 
         const isMatch = await bcrypt.compare(input.memberPassword, member.memberPassword);
 
@@ -50,7 +53,10 @@ class MemberService {
             throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
         }
 
-        return await this.memberModel.findById(member._id).lean().exec();
+        const result = await this.memberModel.findById(member._id).lean().exec();
+        if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
+
+        return result as unknown as Member;
     }
 
 
@@ -76,7 +82,7 @@ class MemberService {
         try {
             const result = await this.memberModel.create(input);   //inputimiz pass qilamiz db yozishi uchun
             result.memberPassword = "";
-            return result;
+            return result as unknown as Member;
         } catch (err) {
             throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);   // ozimiz creatre qilgan errrorni korsatib bermoqdamiz
         }
@@ -94,6 +100,9 @@ class MemberService {
         if (!member) {
             throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
         }
+        if (!member.memberPassword) {
+            throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
+        }
 
         const isMatch = await bcrypt.compare(input.memberPassword, member.memberPassword);
         // const isMatch = input.memberPassword == member.memberPassword;
@@ -106,7 +115,10 @@ class MemberService {
             throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
         }
 
-        return await this.memberModel.findById(member._id).exec();
+        const result = await this.memberModel.findById(member._id).exec();
+        if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
+
+        return result as unknown as Member;
     }
 
 
