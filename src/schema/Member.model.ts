@@ -4,7 +4,7 @@ import { Member } from '../libs/types/member';
 // Schema first/ Code first
 
 // Schema first
-const memberSchema = new Schema<Member>({
+const memberSchema = new Schema({
     memberType: {
         type: String,
         enum: MemberType,
@@ -56,4 +56,4 @@ const memberSchema = new Schema<Member>({
     {timestamps: true}    // updatedAt, createdAt
 );
 
-export default mongoose.model<Member>("Member", memberSchema);
+export default mongoose.model("Member", memberSchema);

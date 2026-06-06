@@ -17,3 +17,9 @@
     GraphQL Api
     ...
 */
+
+/*
+    Traditional FD  => BSSR(Adminka) => EJS
+    Modern FD       => SSR (User's application)  => REACTJS
+*/
+

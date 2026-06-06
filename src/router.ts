@@ -4,7 +4,9 @@ import memberController from "./controllers/member.controller";
 // default chaqirilganda yaxlit chaqiriladi
 
 
+router.post("/login", memberController.login);
 
+router.post("/signup", memberController.signup);
 
 
 
