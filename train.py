@@ -1,12 +1,34 @@
-# TASK Q
-# Objectda berilgan string propertysi borligini tekshirsin.
-# Masalan: hasProperty({name: "BMW"}, "name") return true
+# TASK R
+# "1 + 2" ko'rinishidagi stringni hisoblab number qaytarsin.
+# Masalan: calculate("1 + 3") return 4
 
-def has_property(obj, prop):
-    return prop in obj
+def calculate(expression):
+    parts = expression.split()
+    num1 = int(parts[0])
+    operator = parts[1]
+    num2 = int(parts[2])
+
+    if operator == "+":
+        return num1 + num2
+    elif operator == "-":
+        return num1 - num2
+    elif operator == "*":
+        return num1 * num2
+    elif operator == "/":
+        return num1 // num2
 
 
-print(has_property({"name": "BMW"}, "name"))
+print(calculate("1 + 3"))
+
+# # TASK Q
+# # Objectda berilgan string propertysi borligini tekshirsin.
+# # Masalan: hasProperty({name: "BMW"}, "name") return true
+
+# def has_property(obj, prop):
+#     return prop in obj
+
+
+# print(has_property({"name": "BMW"}, "name"))
 
 # # TASK P
 # # Objectni nested array sifatida convert qilib qaytarsin.
