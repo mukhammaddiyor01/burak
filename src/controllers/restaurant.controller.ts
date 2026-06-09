@@ -7,6 +7,7 @@ import { LoginInput  } from "../libs/types/member";
 import { Message } from "../libs/Errors";
 
 
+
 const memberService = new MemberService();
 
 const restaurantController: T = {};
@@ -42,7 +43,9 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
 
     } catch(err) {
         console.log("Error, processSignup:", err);
-        res.send(err);
+        const message = 
+            err instanceof Error ? err.message : Message.SOMETHING_WENT_WRONG;
+        res.send(`<script> alert("${message}"); windows.location.replace('admin/signup') </script>`);
     }
 };
 
@@ -53,6 +56,7 @@ restaurantController.getSignup = (req: Request, res: Response) => {
 
     } catch(err) {
         console.log("Error, getSignUp:", err);
+        res.redirect("/admin");
     }
 };
 
@@ -63,6 +67,7 @@ restaurantController.getLogin = (req: Request, res: Response) => {
         res.render("login");
     } catch(err) {
         console.log("Error, Login:", err);
+        res.redirect("/admin");
     }
 };
 
@@ -85,7 +90,25 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
 
     } catch (err) {
         console.log("Error, processLogin:", err);
-        res.send(err);
+        const message = 
+            err instanceof Error ? err.message : Message.SOMETHING_WENT_WRONG;
+        res.send(`<script> alert("${message}"); windows.location.replace('admin/login') </script>`);
+    }
+};
+
+
+restaurantController.logout = async (
+    req: AdminRequest, 
+    res: Response
+) => {
+    try {
+        console.log("processlogout");
+        req.session.destroy(function() {
+            res.redirect("/admin")   // redirect() bizni linkga yuboradi
+        });
+    } catch (err) {
+        console.log("Error, processLogin:", err);
+        res.redirect("/admin");
     }
 };
 

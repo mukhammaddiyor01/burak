@@ -23,3 +23,8 @@
     Modern FD       => SSR (User's application)  => REACTJS
 */
 
+/*
+request join 
+self destruction
+
+*/
