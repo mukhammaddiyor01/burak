@@ -1,24 +1,39 @@
-# TASK R
-# "1 + 2" ko'rinishidagi stringni hisoblab number qaytarsin.
-# Masalan: calculate("1 + 3") return 4
+# TASK S
+# Array ichidagi tushib qolgan sonni topib qaytarsin.
+# Masalan: missingNumber([3, 0, 1]) return 2
 
-def calculate(expression):
-    parts = expression.split()
-    num1 = int(parts[0])
-    operator = parts[1]
-    num2 = int(parts[2])
+def missingNumber(nums):
+    n = len(nums)
 
-    if operator == "+":
-        return num1 + num2
-    elif operator == "-":
-        return num1 - num2
-    elif operator == "*":
-        return num1 * num2
-    elif operator == "/":
-        return num1 // num2
+    for num in range(n + 1):
+        if num not in nums:
+            return num
 
 
-print(calculate("1 + 3"))
+print(missingNumber([3, 0, 1]))
+
+
+# # TASK R
+# # "1 + 2" ko'rinishidagi stringni hisoblab number qaytarsin.
+# # Masalan: calculate("1 + 3") return 4
+
+# def calculate(expression):
+#     parts = expression.split()
+#     num1 = int(parts[0])
+#     operator = parts[1]
+#     num2 = int(parts[2])
+
+#     if operator == "+":
+#         return num1 + num2
+#     elif operator == "-":
+#         return num1 - num2
+#     elif operator == "*":
+#         return num1 * num2
+#     elif operator == "/":
+#         return num1 // num2
+
+
+# print(calculate("1 + 3"))
 
 # # TASK Q
 # # Objectda berilgan string propertysi borligini tekshirsin.
