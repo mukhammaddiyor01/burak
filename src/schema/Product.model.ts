@@ -68,4 +68,4 @@ productSchema.index(
     { unique: true }
 );
 
-export default mongoose.model("Member", productSchema);
+export default mongoose.model("Product", productSchema);
