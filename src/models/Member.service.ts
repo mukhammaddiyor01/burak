@@ -21,7 +21,7 @@ class MemberService {
         try {
             const result = await this.memberModel.create(input);
             result.memberPassword = "";
-            return result.toJSON() as unknown as Member;
+            return result.toObject() as Member;
         } catch (err) {
             console.error("ERROR, model signup", err)
             throw new Errors(HttpCode.BAD_REQUEST, Message.USED_NICK_PHONE);
@@ -32,7 +32,7 @@ class MemberService {
 
     public async login(input: LoginInput): Promise<Member> {
 
-        // TODO: Consider member status later
+        // TODO: Consider member status
         const member = await this.memberModel
             .findOne(
                 { memberNick: input.memberNick },
@@ -40,9 +40,6 @@ class MemberService {
             .exec();
         if (!member) {
             throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
-        }
-        if (!member.memberPassword) {
-            throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
         }
 
         const isMatch = await bcrypt.compare(input.memberPassword, member.memberPassword);
@@ -55,9 +52,15 @@ class MemberService {
 
         const result = await this.memberModel.findById(member._id).lean().exec();
         if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
-
         return result as unknown as Member;
     }
+
+
+
+
+
+
+
 
 
 
@@ -74,15 +77,15 @@ class MemberService {
         console.log("exist:", exist);
         if (exist) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);   // ozimiz creatre qilgan errrorni korsatib bermoqdamiz
 
-        console.log("before:", input.memberPassword)
+        // console.log("before:", input.memberPassword)
         const salt = await bcrypt.genSalt();
         input.memberPassword = await bcrypt.hash(input.memberPassword, salt);
-        console.log("after:", input.memberPassword)
+        // console.log("after:", input.memberPassword)
 
         try {
             const result = await this.memberModel.create(input);   //inputimiz pass qilamiz db yozishi uchun
             result.memberPassword = "";
-            return result as unknown as Member;
+            return result.toObject() as Member;
         } catch (err) {
             throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);   // ozimiz creatre qilgan errrorni korsatib bermoqdamiz
         }
@@ -100,9 +103,6 @@ class MemberService {
         if (!member) {
             throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
         }
-        if (!member.memberPassword) {
-            throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
-        }
 
         const isMatch = await bcrypt.compare(input.memberPassword, member.memberPassword);
         // const isMatch = input.memberPassword == member.memberPassword;
@@ -115,9 +115,8 @@ class MemberService {
             throw new Errors(HttpCode.UNAUTHORIZED, Message.WRONG_PASSWORD);
         }
 
-        const result = await this.memberModel.findById(member._id).exec();
+        const result = await this.memberModel.findById(member._id).lean().exec();
         if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_MEMBER_NICK);
-
         return result as unknown as Member;
     }
 
