@@ -4,6 +4,11 @@
     <div>
         <div>PRODUCT PAGE</div>
         <div><%=member.memberNick %></div>  <!-- bizga qiymat kerak bolsa =  kiritib olar ekanmiz -->
+        
+        <% products.map( function(value, key ) { %>
+        <p><%= value.productName %> - <%= value.productPrice  %></p>
+        <% }) %>   
+         <!--loop qilib productning ichidagilardan foydalansak bo'larkan -->
     </div>
     
 </body>

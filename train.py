@@ -1,16 +1,28 @@
-# TASK S
-# Array ichidagi tushib qolgan sonni topib qaytarsin.
-# Masalan: missingNumber([3, 0, 1]) return 2
+# TASK T
+# Ikkita arrayni qabul qilib, ularni birlashtirib tartiblangan holda qaytarsin.
+# Masalan: mergeSortedArrays([0, 3, 4], [4, 6]) return [0, 3, 4, 4, 6]
 
-def missingNumber(nums):
-    n = len(nums)
-
-    for num in range(n + 1):
-        if num not in nums:
-            return num
+def mergeSortedArrays(arr1, arr2):
+    merged = arr1 + arr2
+    merged.sort()
+    return merged
 
 
-print(missingNumber([3, 0, 1]))
+print(mergeSortedArrays([0, 3, 4], [4, 6]))
+
+# # TASK S
+# # Array ichidagi tushib qolgan sonni topib qaytarsin.
+# # Masalan: missingNumber([3, 0, 1]) return 2
+
+# def missingNumber(nums):
+#     n = len(nums)
+
+#     for num in range(n + 1):
+#         if num not in nums:
+#             return num
+
+
+# print(missingNumber([3, 0, 1]))
 
 
 # # TASK R

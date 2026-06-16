@@ -34,7 +34,7 @@ routerAdmin.post("/product/create",
     // uploadProductImage.single('productImage'),
     makeUploader("products").array ("productImage", 5),
     productController.createNewProduct);
-routerAdmin.post("/product/:id/:id2", 
+routerAdmin.post("/product/:id", 
     restaurantController.verifyRestaurant,
     productController.updateChosenProduct);
 
