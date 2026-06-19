@@ -50,7 +50,7 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
         console.log("Error, processSignup:", err);
         const message = 
             err instanceof Error ? err.message : Message.SOMETHING_WENT_WRONG;
-        res.send(`<script> alert("${message}"); windows.location.replace('admin/signup') </script>`);
+        res.send(`<script> alert("${message}"); window.location.replace('/admin/signup') </script>`);
     }
 };
 
@@ -82,6 +82,8 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
     try {
         console.log("processLogin");
         console.log("body:", req.body);
+        // throw new Error("FORCED STOOP!");
+
         const input: LoginInput = req.body;
 
         const result = await memberService.processLogin(input);
@@ -97,7 +99,7 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
         console.log("Error, processLogin:", err);
         const message = 
             err instanceof Error ? err.message : Message.SOMETHING_WENT_WRONG;
-        res.send(`<script> alert("${message}"); windows.location.replace('admin/login') </script>`);
+        res.send(`<script> alert("${message}"); window.location.replace("/admin/login") </script>`);
     }
 };
 
