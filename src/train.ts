@@ -31,7 +31,7 @@ self destruction
 
 
 /* Validation:
-    Frontend  validation
+    Frontend  validation (xatolar chiqsa backendga jonatish kerakmasligi uchun ishlatamiz)
     (Pipe validation)
     Backend validation
     Database validation
