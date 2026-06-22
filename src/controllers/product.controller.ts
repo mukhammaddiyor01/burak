@@ -30,6 +30,7 @@ productController.getAllProducts = async (req: Request, res: Response) => {
 productController.createNewProduct = async (req: AdminRequest, res: Response) => {
     try {
         console.log("createNewProduct");
+        console.log("req.body", req.body);
         console.log('====================================');
         console.log("req.files:", req.files);
         console.log('====================================');
@@ -47,11 +48,11 @@ productController.createNewProduct = async (req: AdminRequest, res: Response) =>
         await productService.createNewProduct(data);
         // console.log("data", data)
 
-        res.send(`<script> alert("Successfully created"): window.location.replace('admin/product/all)</script>`);
+        res.send(`<script>alert("Successfully created"); window.location.replace('/admin/product/all');</script>`);
     } catch (err) {
-        console.log("ERROR, createNewProduct:", err)
+        console.log("ERROR, createNe wProduct:", err)
         const message = err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
-        res.send(`<script> alert("Successfully created"): window.location.replace('admin/product/all)</script>`);
+        res.send(`<script>alert("${message}"); window.location.replace('/admin/product/all');</script>`);
 
     }
 
