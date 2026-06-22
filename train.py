@@ -2,6 +2,14 @@
 # Arrayni berilgan uzunlikda bo'laklarga ajratib qaytarsin.
 # Masalan: chunkArray([1, 2, 3, 4, 5], 2) return [[1, 2], [3, 4], [5]]
 
+def chunkArray(arr, size):
+    result = []
+    for i in range(0, len(arr), size):
+        result.append(arr[i:i+size])
+    return result
+
+
+print(chunkArray([1, 2, 3, 4, 5], 2))
 
 # # TASK V
 # # Stringdagi har bir harf necha marta takrorlanganini object sifatida qaytarsin.
