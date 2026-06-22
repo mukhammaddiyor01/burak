@@ -1,20 +1,25 @@
-# TASK V
-# Stringdagi har bir harf necha marta takrorlanganini object sifatida qaytarsin.
-# Masalan: countChars("hello") return {h: 1, e: 1, l: 2, o: 1}
-
-def countChars(string):
-    result = {}
-
-    for char in string:
-        if char in result:
-            result[char] += 1
-        else:
-            result[char] = 1
-
-    return result
+# TASK W
+# Arrayni berilgan uzunlikda bo'laklarga ajratib qaytarsin.
+# Masalan: chunkArray([1, 2, 3, 4, 5], 2) return [[1, 2], [3, 4], [5]]
 
 
-print(countChars("hello"))
+# # TASK V
+# # Stringdagi har bir harf necha marta takrorlanganini object sifatida qaytarsin.
+# # Masalan: countChars("hello") return {h: 1, e: 1, l: 2, o: 1}
+
+# def countChars(string):
+#     result = {}
+
+#     for char in string:
+#         if char in result:
+#             result[char] += 1
+#         else:
+#             result[char] = 1
+
+#     return result
+
+
+# print(countChars("hello"))
 
 # # TASK T
 # # Ikkita arrayni qabul qilib, ularni birlashtirib tartiblangan holda qaytarsin.
