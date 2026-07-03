@@ -5,12 +5,14 @@ import { MemberType } from '../libs/enums/member.enum';
 import MemberService from '../models/Member.service';
 import Errors from '../libs/Errors';
 import { randomBytes } from 'crypto';
+import AuthService from '../models/Auth.service';
 
 // SPA - REACT uchun 
 
 const memberController: T = {};
 
 const memberService = new MemberService();
+const authService = new AuthService();
 
 const createMemberToken = (): string => randomBytes(48).toString('hex');
 
@@ -22,7 +24,9 @@ memberController.signup = async (req: Request, res: Response) => {
         const input: MemberInput = req.body,
             result: Member = await memberService.signup(input);
         // TODO: TOKENS AUTHENTICATION
-        
+        const token = await authService.createToken(result);
+
+
         res.json({ member: result })
     } catch (err) {
         console.log("ERROR, signup:", err)
@@ -38,8 +42,12 @@ memberController.login = async (req: Request, res: Response) => {
         console.log("login");
         console.log("body:", req.body);
         const input: LoginInput = req.body,
-        result = await memberService.login(input)
-        // TODO: TOKENS AUTHENTICATION
+        result = await memberService.login(input),
+
+                // TODO: TOKENS AUTHENTICATION
+        token = await authService.createToken(result);
+        console.log("token", token);
+
         
         res.json({ member: result })
     } catch (err) {
