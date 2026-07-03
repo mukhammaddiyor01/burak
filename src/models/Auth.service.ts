@@ -6,7 +6,10 @@ import jwt from "jsonwebtoken";
 
 
 class AuthService {
+    private readonly secretToken;
+
     constructor() {
+        this.secretToken = process.env.SECRET_TOKEN as string;
     }
 
     public async createToken(payload: Member) {
@@ -22,6 +25,15 @@ class AuthService {
                 else resolve(token as string);
             });
         });
+    }
+
+    public async checkAuth(token: string): Promise<Member> {
+        const result: Member = (await jwt.verify(
+            token, 
+            this.secretToken
+        )) as Member;
+        console.log(`--- [AUTH] memberNick: ${result.memberNick} ---`);
+        return result;
     }
 }
 
