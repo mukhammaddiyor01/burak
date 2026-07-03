@@ -3,9 +3,10 @@ import { Request, Response } from 'express'
 import { LoginInput, Member, MemberInput } from '../libs/types/member';
 import { MemberType } from '../libs/enums/member.enum';
 import MemberService from '../models/Member.service';
-import Errors from '../libs/Errors';
+import Errors, { HttpCode } from '../libs/Errors';
 import { randomBytes } from 'crypto';
 import AuthService from '../models/Auth.service';
+import { AUTH_TIMER } from '../libs/config';
 
 // SPA - REACT uchun 
 
@@ -26,8 +27,12 @@ memberController.signup = async (req: Request, res: Response) => {
         // TODO: TOKENS AUTHENTICATION
         const token = await authService.createToken(result);
 
-
-        res.json({ member: result })
+        // TODO: TOKEN Cookie ga joylash
+        res.cookie("accessToken", token, {maxAge: AUTH_TIMER * 3600 * 1000,
+            httpOnly: false,
+        });
+        
+        res.status(HttpCode.CREATED).json({ member: result, accessToken: token });
     } catch (err) {
         console.log("ERROR, signup:", err)
         if (err instanceof Errors) res.status(err.code).json(err);
@@ -46,10 +51,13 @@ memberController.login = async (req: Request, res: Response) => {
 
                 // TODO: TOKENS AUTHENTICATION
         token = await authService.createToken(result);
-        console.log("token", token);
 
-        
-        res.json({ member: result })
+                // TODO: TOKEN Cookie ga joylash
+        res.cookie("accessToken", token, {maxAge: AUTH_TIMER * 3600 * 1000,
+            httpOnly: false,
+        });
+
+        res.status(HttpCode.OK).json({ member: result, accessToken: token });
     } catch (err) {
         console.log("ERROR, login:", err);
         if (err instanceof Errors) res.status(err.code).json(err);
