@@ -15,7 +15,6 @@ const memberController: T = {};
 const memberService = new MemberService();
 const authService = new AuthService();
 
-const createMemberToken = (): string => randomBytes(48).toString('hex');
 
 memberController.signup = async (req: Request, res: Response) => {
     try {
