@@ -19,9 +19,10 @@ router.get("/member/detail",
     memberController.getMemberDetail,
 );
 
-router.post("member/update", 
+router.post("/member/update", 
     memberController.verifyAuth,
-    uploader("members").single("memberImage")
+    uploader("members").single("memberImage"),
+    memberController.updateMember
 );
 
 

@@ -1,6 +1,6 @@
 import { T } from '../libs/types/common'
 import { NextFunction, Request, Response } from 'express'
-import { ExtendedRequest, LoginInput, Member, MemberInput } from '../libs/types/member';
+import { ExtendedRequest, LoginInput, Member, MemberInput, MemberUpdateInput } from '../libs/types/member';
 import { MemberType } from '../libs/enums/member.enum';
 import MemberService from '../models/Member.service';
 import Errors, { HttpCode, Message } from '../libs/Errors';
@@ -101,6 +101,24 @@ memberController.getMemberDetail = async (
         else res.status(Errors.standard.code).json(Errors.standard);
     }
 };
+
+memberController.updateMember = async (
+    req: ExtendedRequest, 
+    res: Response
+) => {
+    try {
+        console.log("updateMember");
+        const input: MemberUpdateInput = req.body;
+        if(req.file) input.memberImage = req.file.path.replace(/\\/, "/");
+        const result = await memberService.updateMember(req.member, input);
+
+        res.status(HttpCode.OK).json(result);
+    } catch (err) {
+        console.log("ERROR, updateMember:", err);
+        if (err instanceof Errors) res.status(err.code).json(err);
+        else res.status(Errors.standard.code).json(Errors.standard);
+    }
+}
 
 memberController.verifyAuth = async (
     req: ExtendedRequest, 
