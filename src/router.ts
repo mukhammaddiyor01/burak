@@ -5,6 +5,8 @@ import uploader from "./libs/utils/uploader"
 // default chaqirilganda yaxlit chaqiriladi
 
 /** Member */
+router.get("/member/restaurant", memberController.getRestaurant);
+
 router.post("/member/login", memberController.login);
 
 router.post("/member/signup", memberController.signup);

@@ -17,6 +17,19 @@ const authService = new AuthService();
 
 const createMemberToken = (): string => randomBytes(48).toString('hex');
 
+memberController.getRestaurant = async (req: Request, res: Response) => {
+    try{
+        console.log("getRestaurant");
+        const result = await memberService.getRestaurant();
+
+        res.status(HttpCode.OK).json(result);
+    } catch(err) {
+        console.log("ERROR, getRestaurant:", err)
+        if (err instanceof Errors) res.status(err.code).json(err);
+        else res.status(Errors.standard.code).json(Errors.standard);
+    }
+};
+
 memberController.signup = async (req: Request, res: Response) => {
     try {
         console.log("signup");
