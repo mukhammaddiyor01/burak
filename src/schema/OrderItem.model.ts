@@ -19,8 +19,9 @@ const orderItemSchema = new Schema({
 
 productId: {
     type: Schema.Types.ObjectId,
-    res: "Product"
-}
+    required: true,
+    ref: "Product",
+},
 
 }, {timestamps: true, collection: "orderItems"});
 

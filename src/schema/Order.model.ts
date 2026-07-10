@@ -14,7 +14,8 @@ const orderschema = new Schema({
 
     orderStatus: {
         type: String,
-        enum: OrderStatus.PAUSE,
+        enum: OrderStatus,
+        default: OrderStatus.PAUSE,
     },
 
     memberId: {
@@ -27,4 +28,4 @@ const orderschema = new Schema({
 {timestamps:true, collection: "orders"}
 );
 
-export default mongoose.model("Order:", orderschema);
+export default mongoose.model("Order", orderschema);
